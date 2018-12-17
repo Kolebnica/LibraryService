@@ -1,0 +1,38 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: postgres-ls
+spec:
+  selector:
+    app: postgres-ls
+  ports:
+  - protocol: "TCP"
+    port: 5432
+    targetPort: 5432
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-ls-deployment
+  labels:
+    app: postgres-ls
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres-ls
+  template:
+    metadata:
+      labels:
+        app: postgres-ls
+    spec:
+      containers:
+      - name: postgres-ls
+        image: postgres
+        ports:
+        - containerPort: 5432
+        env:
+          - name: POSTGRES_PASSWORD
+            value: skiprope
+        

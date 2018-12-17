@@ -1,0 +1,17 @@
+package api;
+
+import com.kumuluz.ee.cors.annotations.CrossOrigin;
+import com.kumuluz.ee.discovery.annotations.RegisterService;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.info.Contact;
+import io.swagger.v3.oas.annotations.info.Info;
+import io.swagger.v3.oas.annotations.info.License;
+import io.swagger.v3.oas.annotations.servers.Server;
+
+import javax.ws.rs.ApplicationPath;
+
+@OpenAPIDefinition(info = @Info(title = "SkipRope® API", version = "v1", contact = @Contact, license = @License), servers = {@Server(url = "http://localhost:8083/api")})
+@ApplicationPath("api")
+@CrossOrigin(supportedMethods = "GET, POST, PUT, DELETE, HEAD, OPTIONS", exposedHeaders = "X-Total-Count, Content-Disposition, X-Export-Filename")
+@RegisterService
+public class ResourceFrame extends javax.ws.rs.core.Application { }

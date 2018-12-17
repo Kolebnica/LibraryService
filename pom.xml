@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>skiprope</groupId>
+    <artifactId>libraryservice</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+
+    <modules>
+        <module>api</module>
+        <module>entities</module>
+        <module>services</module>
+    </modules>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+
+        <kumuluzee.version>3.0.0</kumuluzee.version>
+        <kumuluzee-cors.version>1.0.3</kumuluzee-cors.version>
+        <kumuluzee-openapi.version>1.0.0</kumuluzee-openapi.version>
+        <kumuluzee-rest.version>1.1.0</kumuluzee-rest.version>
+        <kumuluzee-discovery.version>1.1.0</kumuluzee-discovery.version>
+        <kumuluzee-health.version>1.0.1</kumuluzee-health.version>
+        <kumuluzee-metrics.version>1.1.1</kumuluzee-metrics.version>
+        <kumuluzee-logs.version>1.3.0</kumuluzee-logs.version>
+
+        <postgresql.version>42.2.5</postgresql.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+
+            <dependency>
+                <groupId>com.kumuluz.ee</groupId>
+                <artifactId>kumuluzee-bom</artifactId>
+                <version>${kumuluzee.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- modules -->
+            <dependency>
+                <groupId>skiprope</groupId>
+                <artifactId>api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>skiprope</groupId>
+                <artifactId>entities</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>skiprope</groupId>
+                <artifactId>services</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- kumuluzee -->
+            <dependency>
+                <groupId>com.kumuluz.ee.openapi</groupId>
+                <artifactId>kumuluzee-openapi</artifactId>
+                <version>${kumuluzee-openapi.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.kumuluz.ee.openapi</groupId>
+                <artifactId>kumuluzee-openapi-ui</artifactId>
+                <version>${kumuluzee-openapi.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.kumuluz.ee.rest</groupId>
+                <artifactId>kumuluzee-rest-core</artifactId>
+                <version>${kumuluzee-rest.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.kumuluz.ee.discovery</groupId>
+                <artifactId>kumuluzee-discovery-consul</artifactId>
+                <version>${kumuluzee-discovery.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.kumuluz.ee.health</groupId>
+                <artifactId>kumuluzee-health</artifactId>
+                <version>${kumuluzee-health.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.kumuluz.ee.metrics</groupId>
+                <artifactId>kumuluzee-metrics-core</artifactId>
+                <version>${kumuluzee-metrics.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.kumuluz.ee.logs</groupId>
+                <artifactId>kumuluzee-logs-log4j2</artifactId>
+                <version>${kumuluzee-logs.version}</version>
+            </dependency>
+
+            <!-- other -->
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt</artifactId>
+                <version>0.9.0</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+</project>

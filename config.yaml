@@ -1,0 +1,43 @@
+kumuluzee:
+  name: libraryservice
+  version: 1.0.0
+  env:
+    name: dev
+  server:
+    http:
+      port: 8083
+  datasources:
+  - jndi-name: jdbc/libraryservice
+    connection-url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: skiprope
+    pool:
+      max-size: 2
+
+  health:
+    checks:
+      data-source-health-check:
+        jndi-name: jdbc/libraryservice
+      disk-space-health-check:
+        threshold: 100000000
+
+  metrics:
+    web-instrumentation:
+      - name: metrics-endpoint
+        url-pattern: /api/metadata/*
+        status-codes: "200, 500"
+    servlet:
+      enabled: true
+
+  discovery:
+      consul:
+        agent: http://localhost:8500
+
+  config:
+    consul:
+      agent: http://localhost:8500
+
+# Settings and configurations
+skiprope-configs:
+  health:
+    consul-url: http://localhost:8500/v1/status/leader

@@ -2,7 +2,6 @@ package api.resources;
 
 import beans.crud.ArtistBean;
 import com.kumuluz.ee.logs.cdi.Log;
-import entities.Album;
 import entities.Artist;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;

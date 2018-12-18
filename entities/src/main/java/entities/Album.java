@@ -6,7 +6,8 @@ import javax.xml.bind.annotation.XmlID;
 
 @Entity(name = "albums")
 @NamedQueries(value = {
-        @NamedQuery(name = "Album.getAlbums", query = "SELECT a FROM albums a")
+        @NamedQuery(name = "Album.getAlbums", query = "SELECT a FROM albums a"),
+        @NamedQuery(name = "Album.getAlbumsByArtist", query = "SELECT a FROM albums a WHERE a.artist.id = :id")
 })
 public class Album {
 

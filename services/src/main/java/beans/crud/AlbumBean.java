@@ -28,6 +28,12 @@ public class AlbumBean {
         return q.getResultList();
     }
 
+    @Counted(name = "AlbumBeanCall", monotonic = true)
+    public List<Album> getAlbumsByArtist(int artistId) {
+        TypedQuery<Album> q = em.createNamedQuery("Album.getAlbumsByArtist", Album.class).setParameter("id", artistId);
+        return q.getResultList();
+    }
+
     @Transactional
     @Counted(name = "AlbumBeanCall", monotonic = true)
     public Album insertAlbum(Album a) {

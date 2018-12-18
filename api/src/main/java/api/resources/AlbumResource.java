@@ -62,6 +62,21 @@ public class AlbumResource {
         return Response.ok(a).build();
     }
 
+    @Operation(
+            summary = "Get albums by artist",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Albums for given artist"),
+            },
+            parameters = {
+                    @Parameter(name = "artistId", in = ParameterIn.PATH),
+            }
+    )
+    @GET
+    @Path("artist/{artistId}")
+    public Response getAlbumsByArtist(@PathParam("artistId") int artistId) {
+        return Response.ok(albumBean.getAlbumsByArtist(artistId)).build();
+    }
+
     //
 
     @Operation(

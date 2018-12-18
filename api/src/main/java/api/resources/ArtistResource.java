@@ -21,9 +21,9 @@ import javax.ws.rs.core.Response;
 
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-@Path("artist")
+@Path("artists")
 @ApplicationScoped
-@Tags(value = @Tag(name = "artist"))
+@Tags(value = @Tag(name = "artists"))
 @Log
 public class ArtistResource {
 

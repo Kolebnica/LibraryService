@@ -21,9 +21,9 @@ import javax.ws.rs.core.Response;
 
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-@Path("album")
+@Path("albums")
 @ApplicationScoped
-@Tags(value = @Tag(name = "album"))
+@Tags(value = @Tag(name = "albums"))
 @Log
 public class AlbumResource {
 

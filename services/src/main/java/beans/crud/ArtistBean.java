@@ -17,19 +17,19 @@ public class ArtistBean {
     @PersistenceContext(unitName = "sr-jpa")
     private EntityManager em;
 
-    @Counted(name = "ArtistBeanCall")
+    @Counted(name = "ArtistBeanCall", monotonic = true)
     public Artist getArtist(int id) {
         return em.find(Artist.class, id);
     }
 
-    @Counted(name = "ArtistBeanCall")
+    @Counted(name = "ArtistBeanCall", monotonic = true)
     public List<Artist> getArtists() {
         TypedQuery<Artist> q = em.createNamedQuery("Artist.getArtists", Artist.class);
         return q.getResultList();
     }
 
     @Transactional
-    @Counted(name = "ArtistBeanCall")
+    @Counted(name = "ArtistBeanCall", monotonic = true)
     public Artist insertArtist(Artist a) {
         try {
             em.persist(a);
@@ -41,7 +41,7 @@ public class ArtistBean {
     }
 
     @Transactional
-    @Counted(name = "ArtistBeanCall")
+    @Counted(name = "ArtistBeanCall", monotonic = true)
     public Artist updateArtist(int id, Artist a) {
         Artist existing = em.find(Artist.class, id);
         if (existing == null) {
@@ -55,7 +55,7 @@ public class ArtistBean {
     }
 
     @Transactional
-    @Counted(name = "ArtistBeanCall")
+    @Counted(name = "ArtistBeanCall", monotonic = true)
     public boolean deleteArtist(int id) {
         Artist a = em.find(Artist.class, id);
         if (a == null) {

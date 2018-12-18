@@ -23,9 +23,8 @@ kumuluzee:
 
   metrics:
     web-instrumentation:
-      - name: metrics-endpoint
-        url-pattern: /api/metadata/*
-        status-codes: "200, 500"
+      - name: all-endpoints
+        url-pattern: /api/*
     servlet:
       enabled: true
 

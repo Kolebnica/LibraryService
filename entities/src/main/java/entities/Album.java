@@ -22,7 +22,8 @@ public class Album {
     @JoinColumn(name = "artist_id")
     private Artist artist;
 
-    private int release_year;
+    @Column(name = "release_year")
+    private int releaseYear;
 
     public int getId() {
         return id;
@@ -48,12 +49,12 @@ public class Album {
         this.artist = artist;
     }
 
-    public int getRelease_year() {
-        return release_year;
+    public int getReleaseYear() {
+        return releaseYear;
     }
 
-    public void setRelease_year(int release_year) {
-        this.release_year = release_year;
+    public void setReleaseYear(int releaseYear) {
+        this.releaseYear = releaseYear;
     }
 
 }

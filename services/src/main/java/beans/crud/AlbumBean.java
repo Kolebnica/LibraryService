@@ -17,19 +17,19 @@ public class AlbumBean {
     @PersistenceContext(unitName = "sr-jpa")
     private EntityManager em;
 
-    @Counted(name = "AlbumBeanCall")
+    @Counted(name = "AlbumBeanCall", monotonic = true)
     public Album getAlbum(int id) {
         return em.find(Album.class, id);
     }
 
-    @Counted(name = "AlbumBeanCall")
+    @Counted(name = "AlbumBeanCall", monotonic = true)
     public List<Album> getAlbums() {
         TypedQuery<Album> q = em.createNamedQuery("Album.getAlbums", Album.class);
         return q.getResultList();
     }
 
     @Transactional
-    @Counted(name = "AlbumBeanCall")
+    @Counted(name = "AlbumBeanCall", monotonic = true)
     public Album insertAlbum(Album a) {
         try {
             em.persist(a);
@@ -41,7 +41,7 @@ public class AlbumBean {
     }
 
     @Transactional
-    @Counted(name = "AlbumBeanCall")
+    @Counted(name = "AlbumBeanCall", monotonic = true)
     public Album updateAlbum(int id, Album a) {
         Album existing = em.find(Album.class, id);
         if (existing == null) {
@@ -55,7 +55,7 @@ public class AlbumBean {
     }
 
     @Transactional
-    @Counted(name = "AlbumBeanCall")
+    @Counted(name = "AlbumBeanCall", monotonic = true)
     public boolean deleteAlbum(int id) {
         Album a = em.find(Album.class, id);
         if (a == null) {

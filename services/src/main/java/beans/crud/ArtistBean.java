@@ -35,7 +35,7 @@ public class ArtistBean {
             em.persist(a);
             em.flush();
             return a;
-        } catch (EntityExistsException exists) {
+        } catch (Exception e) {
             return null;
         }
     }

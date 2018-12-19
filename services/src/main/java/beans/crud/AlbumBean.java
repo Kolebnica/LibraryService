@@ -41,7 +41,7 @@ public class AlbumBean {
             em.persist(a);
             em.flush();
             return a;
-        } catch (EntityExistsException e) {
+        } catch (Exception e) {
             return null;
         }
     }

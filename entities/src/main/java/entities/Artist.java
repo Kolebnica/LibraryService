@@ -7,7 +7,8 @@ import java.util.List;
 
 @Entity(name = "artists")
 @NamedQueries(value = {
-        @NamedQuery(name = "Artist.getArtists", query = "SELECT a FROM artists a")
+        @NamedQuery(name = "Artist.getArtists", query = "SELECT a FROM artists a"),
+        @NamedQuery(name = "Artist.getArtistsByUser", query = "SELECT a FROM artists a WHERE a.userId = :id")
 })
 public class Artist {
 
@@ -16,6 +17,9 @@ public class Artist {
     @XmlID
     @XmlElement
     private int id;
+
+    @Column(name = "user_id", nullable = false)
+    private int userId;
 
     private String creativeName;
 
@@ -30,6 +34,14 @@ public class Artist {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getCreativeName() {
@@ -48,4 +60,11 @@ public class Artist {
         this.fullName = fullName;
     }
 
+    public List<Album> getAlbum() {
+        return album;
+    }
+
+    public void setAlbum(List<Album> album) {
+        this.album = album;
+    }
 }

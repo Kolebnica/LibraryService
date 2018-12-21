@@ -7,7 +7,8 @@ import javax.xml.bind.annotation.XmlID;
 @Entity(name = "albums")
 @NamedQueries(value = {
         @NamedQuery(name = "Album.getAlbums", query = "SELECT a FROM albums a"),
-        @NamedQuery(name = "Album.getAlbumsByArtist", query = "SELECT a FROM albums a WHERE a.artist.id = :id")
+        @NamedQuery(name = "Album.getAlbumsByArtist", query = "SELECT a FROM albums a WHERE a.artist.id = :id"),
+        @NamedQuery(name = "Album.getAlbumsByUser", query = "SELECT a FROM albums a WHERE a.userId = :id")
 })
 public class Album {
 
@@ -16,6 +17,9 @@ public class Album {
     @XmlID
     @XmlElement
     private int id;
+
+    @Column(name = "user_id", nullable = false)
+    private int userId;
 
     private String title;
 
@@ -32,6 +36,14 @@ public class Album {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getTitle() {

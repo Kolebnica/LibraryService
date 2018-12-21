@@ -62,6 +62,21 @@ public class ArtistResource {
         return Response.ok(a).build();
     }
 
+    @Operation(
+            summary = "Get artists by user",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Artists by given user"),
+            },
+            parameters = {
+                    @Parameter(name = "userId", in = ParameterIn.PATH),
+            }
+    )
+    @GET
+    @Path("user/{userId}")
+    public Response getArtistsByUser(@PathParam("userId") int userId) {
+        return Response.ok(artistBean.getArtistsByUser(userId)).build();
+    }
+
     //
 
     @Operation(

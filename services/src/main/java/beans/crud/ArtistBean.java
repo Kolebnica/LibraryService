@@ -28,6 +28,12 @@ public class ArtistBean {
         return q.getResultList();
     }
 
+    @Counted(name = "ArtistBeanCall", monotonic = true)
+    public List<Artist> getArtistsByUser(int userId) {
+        TypedQuery<Artist> q = em.createNamedQuery("Artist.getArtistsByUser", Artist.class).setParameter("id", userId);
+        return q.getResultList();
+    }
+
     @Transactional
     @Counted(name = "ArtistBeanCall", monotonic = true)
     public Artist insertArtist(Artist a) {

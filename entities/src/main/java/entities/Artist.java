@@ -1,8 +1,8 @@
 package entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlID;
 import java.util.List;
 
 @Entity(name = "artists")
@@ -10,12 +10,11 @@ import java.util.List;
         @NamedQuery(name = "Artist.getArtists", query = "SELECT a FROM artists a"),
         @NamedQuery(name = "Artist.getArtistsByUser", query = "SELECT a FROM artists a WHERE a.userId = :id")
 })
+
 public class Artist {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @XmlID
-    @XmlElement
     private int id;
 
     @Column(name = "user_id", nullable = false)
@@ -26,7 +25,8 @@ public class Artist {
     private String fullName;
 
     @OneToMany(mappedBy = "artist", fetch = FetchType.LAZY)
-    private List<Album> album;
+    @JsonIgnoreProperties({"artist"})
+    private List<Album> albums;
 
     public int getId() {
         return id;
@@ -60,11 +60,7 @@ public class Artist {
         this.fullName = fullName;
     }
 
-    public List<Album> getAlbum() {
-        return album;
-    }
-
-    public void setAlbum(List<Album> album) {
-        this.album = album;
+    public List<Album> getAlbums() {
+        return albums;
     }
 }

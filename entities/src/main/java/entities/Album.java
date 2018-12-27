@@ -1,8 +1,8 @@
 package entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlID;
 
 @Entity(name = "albums")
 @NamedQueries(value = {
@@ -14,8 +14,6 @@ public class Album {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @XmlID
-    @XmlElement
     private int id;
 
     @Column(name = "user_id", nullable = false)
@@ -25,6 +23,7 @@ public class Album {
 
     @ManyToOne
     @JoinColumn(name = "artist_id")
+    @JsonIgnoreProperties({"albums"})
     private Artist artist;
 
     @Column(name = "release_year")

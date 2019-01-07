@@ -9,14 +9,14 @@ import javax.enterprise.context.ApplicationScoped;
 @ConfigBundle("skiprope-configs")
 public class Configurations {
 
-    @ConfigValue("health.consul-url")
-    private String consulHealthUrl;
+    @ConfigValue("health.etcd-url")
+    private String etcdHealthUrl;
 
-    public String getConsulHealthUrl() {
-        return consulHealthUrl;
+    public String getEtcdHealthUrl() {
+        return etcdHealthUrl;
     }
 
-    public void setConsulHealthUrl(String consulHealthUrl) {
-        this.consulHealthUrl = consulHealthUrl;
+    public void setEtcdHealthUrl(String etcdHealthUrl) {
+        this.etcdHealthUrl = etcdHealthUrl;
     }
 }

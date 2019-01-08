@@ -1,25 +1,45 @@
 package beans.crud;
 
+import configurations.Configurations;
 import entities.Album;
+import org.eclipse.microprofile.faulttolerance.CircuitBreaker;
+import org.eclipse.microprofile.faulttolerance.Fallback;
 import org.eclipse.microprofile.metrics.annotation.Counted;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.persistence.EntityExistsException;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
+@CircuitBreaker(requestVolumeThreshold = 5, delay = 20, delayUnit = ChronoUnit.SECONDS)
 @ApplicationScoped
 public class AlbumBean {
 
     @PersistenceContext(unitName = "sr-jpa")
     private EntityManager em;
 
+    @Inject
+    private Configurations configs;
+
     @Counted(name = "AlbumBeanCall", monotonic = true)
+    @Fallback(fallbackMethod = "getAlbumFallback")
     public Album getAlbum(int id) {
+        if (Math.random() * 100 > configs.getToleranceTest()) {
+            throw new RuntimeException("getAlbum failure test");
+        }
         return em.find(Album.class, id);
+    }
+
+    public Album getAlbumFallback(int id) {
+        Album a = new Album();
+        a.setId(id);
+        a.setArtist(null);
+        a.setTitle("n/a");
+        return a;
     }
 
     @Counted(name = "AlbumBeanCall", monotonic = true)
